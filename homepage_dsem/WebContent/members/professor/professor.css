@@ -1,0 +1,32 @@
+#professor {
+    position: relative;
+    width: 180px;
+    top: 200px;
+    left: 120px;
+}
+#div1 {
+    position: relative;
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+#text {
+	top: 20px;
+    position: relative;
+    left: 350px;
+}
+#a {
+    padding: 0px 100px;
+}
+#contents p{
+    position: relative;
+    font-size: 30px;
+    font-weight: bold;
+    left: 100px;
+}
+#contents li{
+    position: relative;
+    left: 150px;
+}
+i {
+    font-weight: bold;
+}

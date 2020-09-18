@@ -1,0 +1,16 @@
+@charset "UTF-8";
+#a {
+    padding: 50px 150px 100px 150px;
+}
+#contents P{
+    font-size: 30px;
+    font-weight: bold;
+}
+#J{
+    line-height: 25px;
+    padding: 0px 0px 0px 30px;
+    list-style-type: none;
+}
+#btn {
+    padding: 150px 0px 0px 1700px;
+}

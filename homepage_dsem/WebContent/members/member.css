@@ -1,0 +1,29 @@
+#main { 
+    position: absolute;
+    z-index: 1;
+}
+#btn {
+    padding: 150px 0px 0px 1700px;
+}
+#members {
+    position: relative;
+    margin: 0px 0px;
+    padding: 0px 0px;
+}
+#img1 {
+    position: relative;
+    width: 140px;
+    height: 165px;
+    top: 100px;
+    left: 130px;
+} 
+
+#text {
+    position: relative;
+    top: -71px;
+    left: 300px;
+}
+h2 {
+	position: relative;
+	padding: 0px 0px 0px 150px; 
+}

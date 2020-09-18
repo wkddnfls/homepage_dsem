@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+#a {
+	padding: 20px 0px 0px 35px;
+}
+#b {
+	padding: 20px;
+}
+#fileName  {
+   position: absolute;
+   top:475px;
+   left: 250px;
+}
+.file_input_div{
+position: relative;
+width: 100px;
+height: 23px;
+overflow: hidden;
+}
+
+.file_input_hidden{
+font-size: 23px;
+position: absolute;
+right: 0px;
+top: 0px;
+cursor: pointer;
+opacity: 0;
+filter: alpha(opacity=0);
+-ms-filter: "alpha(opacity=0)";
+-khtml-opacity: 0;
+-moz-opacity: 0;
+}
+
+.file_input_button{
+width: 100px;
+position: absolute;
+top: 0px;
+background-color: #f4f4f4;
+color: black;
+border-style: solid;
+}

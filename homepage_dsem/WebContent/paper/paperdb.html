@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title> insert_page</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+				$('#insert').click(function() {
+					$('#Journal').submit();
+				});
+				$('#insert1').click(function() {
+					$('#Conference').submit();
+				});
+	});
+</script>
+</head>
+<body>
+<h2> Journal 
+	<button  type="button" onclick="location.href='journal_list.jsp'" style="font-size: 15px;">목록보기</button>&nbsp;&nbsp;
+	<button  type="button" onclick="location.href='paper.jsp'" style="font-size: 15px;">paper</button>
+</h2>
+	<form id="Journal" action="insert_journal.jsp" method="post">
+		<div>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>year</th>
+						<th>part</th>
+						<th>date</th>
+						<th>authors</th>
+						<th>title</th>
+						<th>journal_name</th>
+						<th>기타</th>
+						<th>ISSN</th>
+						<th>paper_index</th>
+						<th>IF</th>
+						<th>연구비</th>
+						<th>doi</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input size="7"type="text" id="year" name="year"></td>
+						<td><select id="part" name="part">
+								<option value="DJ">DJ</option>
+								<option value="IJ">IJ</option>
+						</select></td>
+						<td><input size="15" type="text" id="날짜" name="날짜" /></td>
+						<td><input type="text" id="authors" name="저자" /></td>
+						<td><input type="text" id="title" name="제목" /></td>
+						<td><input type="text" id="journal_name" name="저널명" /></td>
+						<td><input type="text" id="기타" name="기타" /></td>
+						<td><input type="text" id="ISSN" name="논문번호" /></td>
+						<td><input size="15" type="text" id="paper_index" name="등재지" /></td>
+						<td><input size="15" type="text" id="IF" name="인용지수" /></td>
+						<td><input type="text" id="연구비" name="연구비" /></td>
+						<td><input type="text" id="doi" name="식별번호" /></td>
+						<td><input type="submit" id="insert" value="add" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</form>
+	</br></br></br></br>
+	<h2> Conference 
+		<button  type="button" onclick="location.href='conference_list.jsp'" style="font-size: 15px;">목록보기</button>
+	</h2>
+	<form id="Conference" action="insert_conference.jsp" method="post">
+		<div class="row">
+			<table border="1">
+				<thead>
+					<tr>
+						<th>year</th>
+						<th>part</th>
+						<th>date</th>
+						<th>authors</th>
+						<th>title</th>
+						<th>proceeding</th>
+						<th>ISSN</th>
+						<th>place</th>
+						<th>연구비</th>
+						<th>비고</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input size="7" type="text" id="year" name="year"></td>
+						<td><select id="part" name="part">
+								<option value="DC">DC</option>
+								<option value="IC">IC</option>
+						</select></td>
+						<td ><input type="text" id="date" name="날짜"></td>
+						<td><input type="text" id="authors" name="저자"></td>
+						<td><input type="text" id="title" name="제목"></td>
+						<td><input type="text" id="proceeding" name="발표논문"></td>
+						<td><input type="text" id="ISSN" name="논문번호"></td>
+						<td><input type="text" id="place" name="장소"></td>
+						<td><input type="text" id="연구비" name="연구비"></td>
+						<td><input type="text" id="비고" name="비고"></td>
+						<td><input type="submit" id="insert1" value="add" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</form>
+</body>
+</html>

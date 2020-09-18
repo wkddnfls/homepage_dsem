@@ -15,11 +15,10 @@
 </head>
 <body>
 <%
+	String seq_id = request.getParameter("seq_id"); 
+	String sql_imagepath = "SELECT * from homepage.alumni where seq_id='" + seq_id + "'";
+	
 	request.setCharacterEncoding("utf-8");
-
-	String koreanName = request.getParameter("koreanName"); 
-	String sql_imagepath = "SELECT imagepath from homepage.alumni where koreanName='" + koreanName + "'";
-
 	try {
 		Class.forName(global.DEFAULT_DRIVER);
 		conn = DriverManager.getConnection(global.DEFAULT_URL, global.DEFAULT_USERID, global.DEFAULT_PASSWORD);
@@ -33,10 +32,15 @@
 			if (f.exists()) f.delete();	
 		}
 		
-		pstmt = conn.prepareStatement("DELETE FROM homepage.alumni WHERE koreanName =?");
-		pstmt.setString(1, koreanName);
+		pstmt = conn.prepareStatement("DELETE FROM homepage.alumni WHERE seq_id =?");
+		pstmt.setString(1, seq_id);
 		pstmt.executeUpdate();
-			
+		
+		String sql = "set @cnt =0;";
+		pstmt.executeUpdate(sql);
+		sql = "update homepage.alumni set seq_id =@cnt:=@cnt+1;";
+		pstmt.executeUpdate(sql);
+		
 		response.sendRedirect("./memberList.jsp");
 	}catch (SQLException se) {
 		se.printStackTrace();

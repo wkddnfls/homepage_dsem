@@ -15,10 +15,10 @@
 <body>
 	<%
 		request.setCharacterEncoding("UTF-8");
-		String title = request.getParameter("title");
-		System.out.println(title);
+		String seq_id = request.getParameter("seq_id");
+		System.out.println(seq_id);
 	%>
-	<form action="modify_journal_ok.jsp?title=<%=title%>" method="post">
+	<form action="modify_journal_ok.jsp?seq_id=<%=seq_id%>" method="post">
 		<h1>Journal 수정
 		<button  type="button" onclick="location.href='journal_list.jsp'" style="font-size: 15px;">뒤로가기</button>
 		</h1>
@@ -44,7 +44,7 @@
 						Class.forName(global.DEFAULT_DRIVER);
 						Connection conn = DriverManager.getConnection(global.DEFAULT_URL, global.DEFAULT_USERID,
 								global.DEFAULT_PASSWORD);
-						String sql = "select * from homepage.journal where title = '" + title + "';";
+						String sql = "select * from homepage.journal where seq_id = '" + seq_id + "';";
 						pstmt = conn.prepareStatement(sql);
 						rs = pstmt.executeQuery();
 						while (rs.next()) {
@@ -53,7 +53,7 @@
 							String part = rs.getString("part");
 							String date = rs.getString("date");
 							String authors = rs.getString("authors");
-							String title1 = rs.getString("title");
+							String title = rs.getString("title");
 							String journal_name = rs.getString("journal_name");
 							String other = rs.getString("other");
 							String ISSN = rs.getString("ISSN");

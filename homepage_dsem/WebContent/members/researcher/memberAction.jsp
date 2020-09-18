@@ -8,6 +8,8 @@
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+	
+		String query = "INSERT INTO homepage.researcher values(?,?,?,?,?,?,?,?,?,?,?)";
 %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -37,6 +39,19 @@
 	realFolder = scontext.getRealPath(saveflie);
 	
 	try {
+		Class.forName(global.DEFAULT_DRIVER);
+		conn = DriverManager.getConnection(global.DEFAULT_URL, global.DEFAULT_USERID, global.DEFAULT_PASSWORD);
+		Statement stmt = conn.createStatement();
+		int n = 0;
+		String sql = "select count(*) from homepage.researcher";
+		rs = stmt.executeQuery(sql);
+		if (rs.next())
+			n = rs.getInt(1);
+		if (n == 0) {
+			pstmt = conn.prepareStatement(query);
+			n++;
+			request.setCharacterEncoding("euc-kr");
+		
 		// imgup
 		MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
 		Enumeration<?> files = multi.getFileNames();
@@ -63,23 +78,70 @@
 		
 		String fullpath = realFolder + "\\" + filename;
 		System.out.println(fullpath);
-	
-		Class.forName(global.DEFAULT_DRIVER);
-		conn = DriverManager.getConnection(global.DEFAULT_URL, global.DEFAULT_USERID, global.DEFAULT_PASSWORD);
-   		String sql = "INSERT INTO homepage.researcher(koreanName, englishName, remark, department, email, admissionYear, interest, course, filename, imagepath) values(?,?,?,?,?,?,?,?,?,?)";
-   	
-   		pstmt = conn.prepareStatement(sql);
-   		pstmt.setString(1,koreanName);
-   		pstmt.setString(2,englishName);
-   		pstmt.setString(3,remark);
-   		pstmt.setString(4,department);
-   		pstmt.setString(5,email);
-   		pstmt.setString(6,admissionYear);
-   		pstmt.setString(7,interest);
-   		pstmt.setString(8,course);
-   		pstmt.setString(9,filename);
-   		pstmt.setString(10,fullpath);
+	try{
+		pstmt.setInt(1, n);
+   		pstmt.setString(2,koreanName);
+   		pstmt.setString(3,englishName);
+   		pstmt.setString(4,remark);
+   		pstmt.setString(5,department);
+   		pstmt.setString(6,email);
+   		pstmt.setString(7,admissionYear);
+   		pstmt.setString(8,interest);
+   		pstmt.setString(9,course);
+   		pstmt.setString(10,filename);
+   		pstmt.setString(11,fullpath);
    		pstmt.executeUpdate();
+	}catch (Exception e) {
+		System.out.println(e.getMessage());
+	}
+} else {
+	pstmt = conn.prepareStatement(query);
+	n++;
+	request.setCharacterEncoding("euc-kr");
+	
+	MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
+	Enumeration<?> files = multi.getFileNames();
+	String file1 = (String)files.nextElement();
+	filename = multi.getFilesystemName(file1);
+
+	koreanName = multi.getParameter("koreanName");
+	System.out.println("insert koreanName:"+ koreanName);
+	englishName = multi.getParameter("englishName");
+	System.out.println("insert englishName:"+ englishName);
+	remark = multi.getParameter("remark");
+	System.out.println("insert remark:"+ remark);
+	department = multi.getParameter("department");
+	System.out.println("insert department:"+ department);
+	email = multi.getParameter("email");
+	System.out.println("insert email:"+ email);
+	admissionYear = multi.getParameter("admissionYear");
+	System.out.println("insert admissionYear:"+ admissionYear);
+	interest = multi.getParameter("interest");
+	System.out.println("insert interest:"+ interest);
+	course = multi.getParameter("course");
+	System.out.println("insert course:"+ course);
+	System.out.println("insert filename:"+ filename);
+	
+	String fullpath = realFolder + "\\" + filename;
+	System.out.println(fullpath);
+	
+	try{
+		pstmt.setInt(1, n);
+   		pstmt.setString(2,koreanName);
+   		pstmt.setString(3,englishName);
+   		pstmt.setString(4,remark);
+   		pstmt.setString(5,department);
+   		pstmt.setString(6,email);
+   		pstmt.setString(7,admissionYear);
+   		pstmt.setString(8,interest);
+   		pstmt.setString(9,course);
+   		pstmt.setString(10,filename);
+   		pstmt.setString(11,fullpath);
+   		pstmt.executeUpdate();
+	}catch (Exception e) {
+		System.out.println(e.getMessage());
+	}
+}
     	response.sendRedirect(request.getContextPath()+"/members/researcher/memberList.jsp"); 
 	} catch(Exception e) {
     	e.printStackTrace();

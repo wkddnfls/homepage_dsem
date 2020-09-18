@@ -16,8 +16,8 @@
 	<%
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String title = request.getParameter("title");
-			System.out.println(title);
+			String seq_id = request.getParameter("seq_id");
+			System.out.println(seq_id);
 			request.setCharacterEncoding("euc-kr");
 			int year = Integer.parseInt(request.getParameter("year"));
 			String part = request.getParameter("part");
@@ -52,7 +52,7 @@
 			String sql = "UPDATE homepage.journal SET year='" + year + "', part ='" + part + "' ,date= '" + date
 					+ "' ,authors='" + authors + "', title= '" + title1 + "', journal_name= '" + journal_name
 					+ "', other= '" + other + "', ISSN= '" + ISSN + "', paper_index= '" + paper_index + "', IF_= '"
-					+ IF + "', found_= '" + found + "', doi= '" + doi + "' WHERE title= '" + title + "';";
+					+ IF + "', found_= '" + found + "', doi= '" + doi + "' WHERE seq_id= '" + seq_id + "';";
 			System.out.println(sql);
 			pstmt = conn.prepareStatement(sql);
 

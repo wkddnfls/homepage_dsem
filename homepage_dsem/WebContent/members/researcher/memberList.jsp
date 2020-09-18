@@ -35,10 +35,11 @@
 	try{
     	Class.forName(global.DEFAULT_DRIVER);
 		conn = DriverManager.getConnection(global.DEFAULT_URL, global.DEFAULT_USERID, global.DEFAULT_PASSWORD);
-		pstmt = conn.prepareStatement("SELECT * FROM homepage.researcher ORDER BY koreanName ASC LIMIT 10");
+		pstmt = conn.prepareStatement("SELECT * FROM homepage.researcher ORDER BY koreanName ASC;");
 		rs = pstmt.executeQuery();
 		 
         while(rs.next()){
+        	String seq_id = rs.getString("seq_id");
         	String koreanName = rs.getString("koreanName");
         	String englishName = rs.getString("englishName");
         	String remark = rs.getString("remark");
@@ -58,9 +59,8 @@
 				<td><%=admissionYear%></td>
 				<td><%=interest%></td>
 				<td><%=course%></td>
-				<td><a href="./delete.jsp?koreanName=<%=koreanName%>">삭제</a></td>
-				<td><a href="./update.jsp?koreanName=<%=koreanName%>&englishName=<%=englishName%>&remark=<%=remark%>&department=<%=department%>
-				&email=<%=email%>&admissionYear=<%=admissionYear%>&interest=<%=interest%>&course=<%=course%>&imageName=<%=imageName%>">수정</a></td>
+				<td><a href="./delete.jsp?seq_id=<%=seq_id%>">삭제</a></td>
+				<td><a href="./update.jsp?seq_id=<%=seq_id%>">수정</a></td>
 			</tr>
 	<%
         }

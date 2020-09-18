@@ -15,8 +15,8 @@
 </head>
 <body>
 	<%
-		String koreanName = request.getParameter("koreanName"); 
-		String sql_imagepath = "SELECT imagepath from homepage.researcher where koreanName='" + koreanName + "'";
+		String seq_id = request.getParameter("seq_id"); 
+		String sql_imagepath = "SELECT * from homepage.researcher where seq_id='" + seq_id + "'";
 		
 		request.setCharacterEncoding("utf-8");
 		
@@ -33,9 +33,14 @@
 				if (f.exists()) f.delete();	
 			}
 			
-			pstmt = conn.prepareStatement("DELETE FROM homepage.researcher WHERE koreanName =?");
-			pstmt.setString(1, koreanName);
+			pstmt = conn.prepareStatement("DELETE FROM homepage.researcher WHERE seq_id =?");
+			pstmt.setString(1, seq_id);
 			pstmt.executeUpdate();
+			
+			String sql = "set @cnt =0;";
+			pstmt.executeUpdate(sql);
+			sql = "update homepage.researcher set seq_id =@cnt:=@cnt+1;";
+			pstmt.executeUpdate(sql);
 			
 			response.sendRedirect("./memberList.jsp");
 		}catch (SQLException se) {

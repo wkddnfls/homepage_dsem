@@ -43,7 +43,7 @@
 				pstmt = conn.prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-				//	int seq_id = Integer.parseInt(rs.getString("seq_id"));
+					int seq_id = Integer.parseInt(rs.getString("seq_id"));
 					int year = Integer.parseInt(rs.getString("year"));
 					String part = rs.getString("part");
 					String date = rs.getString("date");
@@ -70,8 +70,8 @@
 					<td> <%=IF %> </td>
 					<td> <%=found %> </td>
 					<td> <%=doi %> </td>
-					<td> <a href="delete_journal.jsp?title=<%=title%>">삭제</a></td>
-					<td> <a href="modify_journal.jsp?title=<%=title%>">수정</a></td>
+					<td> <a href="delete_journal.jsp?seq_id=<%=seq_id%>">삭제</a></td>
+					<td> <a href="modify_journal.jsp?seq_id=<%=seq_id%>">수정</a></td>
 				</tr>
 			</tbody>
 		<% 

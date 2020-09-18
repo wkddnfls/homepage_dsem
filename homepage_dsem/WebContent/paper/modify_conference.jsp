@@ -14,10 +14,10 @@
 <body>
 	<%
 		request.setCharacterEncoding("UTF-8");
-		String title = request.getParameter("title");
-		System.out.println(title);
+		String seq_id = request.getParameter("seq_id");
+		System.out.println(seq_id);
 	%>
-	<form action="modify_conference_ok.jsp?title=<%=title%>" method="post">
+	<form action="modify_conference_ok.jsp?seq_id=<%=seq_id%>" method="post">
 		<h1>Conference 수정
 		<button  type="button" onclick="location.href='conference_list.jsp'" style="font-size: 15px;">뒤로가기</button>
 		</h1> 
@@ -41,16 +41,15 @@
 						Class.forName(global.DEFAULT_DRIVER);
 						Connection conn = DriverManager.getConnection(global.DEFAULT_URL, global.DEFAULT_USERID,
 								global.DEFAULT_PASSWORD);
-						String sql = "select * from homepage.conference where title = '" + title + "';";
+						String sql = "select * from homepage.conference where seq_id = '" + seq_id + "';";
 						pstmt = conn.prepareStatement(sql);
 						rs = pstmt.executeQuery();
 						while (rs.next()) {
-							//	int seq_id = Integer.parseInt(rs.getString("seq_id"));
 							int year = Integer.parseInt(rs.getString("year"));
 							String part = rs.getString("part");
 							String date = rs.getString("date");
 							String authors = rs.getString("authors");
-							String title1 = rs.getString("title");
+							String title = rs.getString("title");
 							String proceeding = rs.getString("proceeding");
 							String ISSN = rs.getString("ISSN");
 							String place = rs.getString("place");

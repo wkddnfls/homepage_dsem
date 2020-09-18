@@ -55,7 +55,7 @@
 			if (f.exists()) f.delete();
 		}
 
-		
+		String seq_id = multi.getParameter("seq_id");
 		koreanName = multi.getParameter("koreanName");
 		System.out.println("이름 :"+ koreanName);
 		englishName = multi.getParameter("englishName");
@@ -79,19 +79,20 @@
 	
 		Class.forName(global.DEFAULT_DRIVER);
 		conn = DriverManager.getConnection(global.DEFAULT_URL, global.DEFAULT_USERID, global.DEFAULT_PASSWORD);
-   		String sql = "UPDATE homepage.researcher SET englishName=?, remark=?, department=?, email=?, admissionYear=?, interest=?, course=?, filename=?, imagepath=? WHERE koreanName=?";
+   		String sql = "UPDATE homepage.researcher SET koreanName=?, englishName=?, remark=?, department=?, email=?, admissionYear=?, interest=?, course=?, filename=?, imagepath=? WHERE seq_id=?";
    	
    		pstmt = conn.prepareStatement(sql);
-   		pstmt.setString(1,englishName);
-   		pstmt.setString(2,remark);
-   		pstmt.setString(3,department);
-   		pstmt.setString(4,email);
-   		pstmt.setString(5,admissionYear);
-   		pstmt.setString(6,interest);
-   		pstmt.setString(7,course);
-   		pstmt.setString(8,filename);
-   		pstmt.setString(9,fullpath);
-   		pstmt.setString(10,koreanName);
+   		pstmt.setString(1,koreanName);
+   		pstmt.setString(2,englishName);
+   		pstmt.setString(3,remark);
+   		pstmt.setString(4,department);
+   		pstmt.setString(5,email);
+   		pstmt.setString(6,admissionYear);
+   		pstmt.setString(7,interest);
+   		pstmt.setString(8,course);
+   		pstmt.setString(9,filename);
+   		pstmt.setString(10,fullpath);
+   		pstmt.setString(11,seq_id);
    		pstmt.executeUpdate();
     	response.sendRedirect(request.getContextPath()+"/members/researcher/memberList.jsp"); 
 	} catch(Exception e) {
